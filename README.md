@@ -2,6 +2,7 @@
 
 ## A simple program to generate batch files to start mining.
 Currently only supports Claymore ETH ~~with Asia server~~ __NOW SUPPORTS ALL ETH SERVERS!__ (miningpoolhub.com)
+Now also supports auto switch!
 
 More servers and miners will be added soon!
 
