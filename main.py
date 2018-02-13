@@ -5,17 +5,35 @@ file = open ("start.bat", "w")
 
 s = ""
 
+
+
 def goEU():
     global s
-    s = "EthDcrMiner64.exe -epool europe.ethash-hub.miningpoolhub.com:20535 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
+    global portno
+
+    if portno.get() == 0:
+        s = "EthDcrMiner64.exe -epool europe.ethash-hub.miningpoolhub.com:20535 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
+    if portno.get() == 1:
+        s = "EthDcrMiner64.exe -epool europe.ethash-hub.miningpoolhub.com:17020 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
+
 
 def goUS():
     global s
-    s = "EthDcrMiner64.exe -epool us-east.ethash-hub.miningpoolhub.com:20535 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
+    global portno
+
+    if portno.get() == 0:
+        s = "EthDcrMiner64.exe -epool us-east.ethash-hub.miningpoolhub.com:20535 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
+    if portno.get() == 1:
+        s = "EthDcrMiner64.exe -epool us-east.ethash-hub.miningpoolhub.com:17020 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
 
 def goAS():
     global s
-    s = "EthDcrMiner64.exe -epool asia.ethash-hub.miningpoolhub.com:20535 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
+    global portno
+
+    if portno.get() == 0:
+        s = "EthDcrMiner64.exe -epool asia.ethash-hub.miningpoolhub.com:20535 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
+    if portno.get() == 1:
+        s = "EthDcrMiner64.exe -epool asia.ethash-hub.miningpoolhub.com:17020 -ewal " + name1 + "." + name2 + " -eworker " + name1 + "." + name2 + " -esm 2 -epsw x"
 
 
 def get_value():
@@ -39,6 +57,7 @@ choices = {"US", "Europe", "Asia"}
 root = Tk()
 root.title ("MPHbatcreator")
 
+portno = IntVar(root)
 
 sel_option = StringVar (root)
 sel_option.set("Asia")
@@ -49,14 +68,16 @@ text1 = Text (root, height = 1, width = 10)
 text2 = Text (root, height = 1, width = 10)
 commit = Button (root,text="Generate .bat!", command=lambda: get_value())
 popup = OptionMenu (root, sel_option, *choices)
+auto = Checkbutton (root, text="Auto Switch?", variable=portno)
 
 
 label1.grid (row=0, column=0)
 label2.grid (row=1, column=0)
 text1.grid (row=0, column=2)
 text2.grid (row=1, column=2)
-commit.grid (row=3,column=1)
+commit.grid (row=3,column=2)
 popup.grid (row = 2, column=1)
+auto.grid (row=3, column=0)
 
 root.mainloop()
 
